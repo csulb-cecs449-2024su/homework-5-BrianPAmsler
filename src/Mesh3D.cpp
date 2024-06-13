@@ -27,9 +27,9 @@ Mesh3D::Mesh3D(const std::vector<Vertex3D>& vertices, const std::vector<uint32_t
 	glEnableVertexAttribArray(0);
 
 	// Attribute 1 is texture (u,v).
-	// TODO: configure a second vertex attribute, which is two floats for u and v.
-
-
+	// Configure a second vertex attribute, which is two floats for u and v.
+	glVertexAttribPointer(1, 2, GL_FLOAT, false, sizeof(Vertex3D), (void*) (3 * sizeof(float)));
+	glEnableVertexAttribArray(1);
 
 
 	// Generate a second buffer, to store the indices of each triangle in the mesh.

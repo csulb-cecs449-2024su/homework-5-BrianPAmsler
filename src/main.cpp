@@ -86,11 +86,11 @@ int main() {
 
 	gladLoadGL();
 	// Draw in wireframe mode for now.
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	// glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 
 	// Inintialize scene objects.
-	auto myScene = triangle();
+	auto myScene = bunnyTextured();
 	auto& obj = myScene.objects[0];
 
 	// Activate the shader program.
@@ -102,6 +102,13 @@ int main() {
 	glm::mat4 perspective = glm::perspective(glm::radians(45.0), static_cast<double>(window.getSize().x) / window.getSize().y, 0.1, 100.0);
 	myScene.program.setUniform("view", camera);
 	myScene.program.setUniform("projection", perspective);
+
+	// Enable depth testing
+	glEnable(GL_DEPTH_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+
+	// Enable backface culling
+	glEnable(GL_CULL_FACE);
 
 	// Ready, set, go!
 	bool running = true;
