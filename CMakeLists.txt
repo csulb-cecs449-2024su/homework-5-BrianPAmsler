@@ -12,8 +12,11 @@ endif()
 
 project ("Graphics")
 
+set(CMAKE_PREFIX_PATH "C:/vcpkg/installed/x64-windows")
+
 add_executable (Graphics "src/main.cpp"  "include/AssimpImport.h" "src/AssimpImport.cpp" "include/Mesh3D.h" "include/Object3D.h" "include/ShaderProgram.h"  "src/Mesh3D.cpp" "src/Object3D.cpp" "src/ShaderProgram.cpp" "include/StbImage.h" "src/StbImage.cpp")
 
+set(MSVC_TOOLSET_VERSION "142")
 
 # Find and link external libraries, like SFML.
 # This only works if Vcpkg has been configured correctly.
