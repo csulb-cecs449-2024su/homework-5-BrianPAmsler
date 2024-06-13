@@ -32,7 +32,7 @@ struct Scene {
 ShaderProgram textureShader() {
 	ShaderProgram shader;
 	try {
-		shader.load("shaders/texture_perspective.vert", "shaders/texturing.frag");
+		shader.load("shaders/texture_perspective.vert", "shaders/texture_inverted.frag");
 	}
 	catch (std::runtime_error& e) {
 		std::cout << "ERROR: " << e.what() << std::endl;
@@ -129,6 +129,10 @@ int main() {
 
 		// Update the scene.
 		// obj.rotate(glm::vec3(0, 0.0002, 0));
+
+		// Switch between inverted and not inverted every 5 seconds
+		int invert = (static_cast<int>(now.asSeconds()) / 5) % 2; // This will alternate between 0 and 1, changing every 5 seconds
+		myScene.program.setUniform("invertColors", invert);
 
 		// Clear the OpenGL "context".
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
